@@ -121,11 +121,8 @@ class UltraLightFaceDetecion():
 
         return boxes
 
-
 if __name__ == '__main__':
-    import time
-
-    fd = UltraLightFaceDetecion("weights/RFB-320.tflite",
+    fd = UltraLightFaceDetecion("OpenVtuber/weights/RFB-320.tflite",
                                 conf_threshold=0.88)
 
     cap = cv2.VideoCapture(0, cv2.CAP_DSHOW)
@@ -137,9 +134,7 @@ if __name__ == '__main__':
         if not ret:
             break
 
-        start_time = time.perf_counter()
         boxes, scores = fd.inference(frame)
-        print(time.perf_counter() - start_time)
 
         for det in boxes.astype(np.int32):
             cv2.rectangle(frame, (det[0], det[1]),

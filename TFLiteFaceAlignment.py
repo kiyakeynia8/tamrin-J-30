@@ -5,7 +5,6 @@ import numpy as np
 import cv2
 import tensorflow as tf
 from functools import partial
-import time
 
 
 class CoordinateAlignmentModel():
@@ -129,13 +128,12 @@ class CoordinateAlignmentModel():
 if __name__ == '__main__':
 
     from TFLiteFaceDetector import UltraLightFaceDetecion
-    import sys
 
     fd = UltraLightFaceDetecion(
-        "weights/RFB-320.tflite",
+        "OpenVtuber/weights/RFB-320.tflite",
         conf_threshold=0.88)
     fa = CoordinateAlignmentModel(
-        "weights/coor_2d106.tflite")
+        "OpenVtuber/weights/coor_2d106.tflite")
 
     cap = cv2.VideoCapture(0, cv2.CAP_DSHOW)
     color = (125, 255, 125)
@@ -146,16 +144,12 @@ if __name__ == '__main__':
         if not ret:
             break
 
-        start_time = time.perf_counter()
-
         boxes, scores = fd.inference(frame)
 
         for pred in fa.get_landmarks(frame, boxes):
             for p in np.round(pred).astype(np.int):
                 cv2.circle(frame, tuple(p), 1, color, 1, cv2.LINE_AA)
 
-        print(time.perf_counter() - start_time)
-
         cv2.imshow("result", frame)
-        if cv2.waitKey(0) == ord('q'):
+        if cv2.waitKey(1) == ord('q'):
             break
