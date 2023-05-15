@@ -40,4 +40,4 @@ image = zoom_effect([89,95,94,96,93,91,87,90])
 
 image = cv2.rotate(image,cv2.ROTATE_180)
 
-cv2.imwrite("outputs_assignment_30/result_5.png", image)
+cv2.imwrite("outputs_assignment_30/f_result_2.png", image)

@@ -45,4 +45,4 @@ apple_image = zoom_effect([35,41,40,42,39,37,33,36])
 apple_image = zoom_effect([89,95,94,96,93,91,87,90])
 
 
-cv2.imwrite("outputs_assignment_30/result_3.png", apple_image)
+cv2.imwrite("outputs_assignment_30/f_result_1.png", apple_image)
